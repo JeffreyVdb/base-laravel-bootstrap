@@ -1,6 +1,10 @@
 <?php
 
-class HomeController extends BaseController {
+namespace Project\Controllers;
+
+use View;
+
+class HomeController extends \BaseController {
 
 	/*
 	|--------------------------------------------------------------------------
@@ -15,9 +19,9 @@ class HomeController extends BaseController {
 	|
 	*/
 
-	public function showWelcome()
+	public function showIndex()
 	{
-		return View::make('hello');
+		return View::make('home');
 	}
 
 }

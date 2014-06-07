@@ -6,3 +6,9 @@ composer.lock
 .env.php
 .DS_Store
 Thumbs.db
+
+*.sublime-*
+/.vagrant/
+
+/node_modules/
+/assets/bower/
