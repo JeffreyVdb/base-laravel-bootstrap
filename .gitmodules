@@ -1,3 +1,0 @@
-[submodule "homestead"]
-	path = homestead
-	url = git@github.com:JeffreyVdb/homestead.git
