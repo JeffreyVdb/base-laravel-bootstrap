@@ -1,0 +1,19 @@
+---
+ip: "192.168.10.10"
+memory: 2048
+cpus: 2
+
+homestead_dir: homestead
+authorize: /home/jeffrey/.ssh/id_rsa.pub
+
+folders:
+    - map: .
+      to: /home/vagrant/Code
+
+sites:
+    - map: homestead.app
+      to: /home/vagrant/Code/public
+
+variables:
+    - key: APP_ENV
+      value: local
