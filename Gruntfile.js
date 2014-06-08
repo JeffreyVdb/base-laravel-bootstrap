@@ -7,11 +7,19 @@ module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         dirs: {
-            assets: 'assets',
-            bower: 'assets/bower',
+            assets: {
+                base: 'app/assets',
+                frontend: '<%= dirs.assets.base %>/frontend',
+                backend: '<%= dirs.assets.base %>/admin'
+            },
+            bower: 'app/assets/bower',
             dest: 'public',
             views: 'app/views',
-            build: 'build'
+            build: 'build',
+            styles: {
+                base: 'stylesheets',
+                compass: '<%= dirs.styles.base %>/compass'
+            }
         },
 
         // Task configuration
@@ -77,7 +85,33 @@ module.exports = function (grunt) {
                     dest: '<%= dirs.dest %>/fonts'
                 }]
             }
-        }
+        },
+
+        // Compile compass stylesheets
+        compass: {
+            frontend: {
+                options: {
+                    sassDir: '<%= dirs.assets.frontend %>/<%= dirs.styles.compass %>',
+                    cssDir: '<%= dirs.build %>/compass',
+                    importPath: '<%= dirs.bower %>'
+                }
+            }
+        },
+
+        // Minimize and combine css files
+        cssmin: {
+            frontend: {
+                files: [{
+                    '<%= dirs.dest %>/css/<%= pkg.name %>.min.css': [
+                        // Minify normal stylesheets
+                        '<%= dirs.assets.frontend %>/<%= dirs.styles.base %>/*.css',
+
+                        // Minify stylesheets compiled by compass
+                        '<%= dirs.build %>/compass/*.css'
+                    ]
+                }]
+            }
+        },
     });
 
     // Load plugins
