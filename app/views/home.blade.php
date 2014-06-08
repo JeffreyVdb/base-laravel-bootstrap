@@ -2,7 +2,9 @@
 
 @section('title', 'homepage')
 @section('content')
-	<h1>this is the homepage</h1>
+	<div class="page-header">
+	  	<h1>Laravel bootstrap template</h1>
+	</div>
 	<div class="table-responsive">
 		<table class="table">
 	   		<tr>

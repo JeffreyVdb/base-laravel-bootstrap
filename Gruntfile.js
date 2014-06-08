@@ -23,95 +23,25 @@ module.exports = function (grunt) {
         },
 
         // Task configuration
-        clean: {
-            dist: ['<%= dirs.build %>', '<%= dirs.dest %>/css', '<%= dirs.dest %>/js']
-        },
+        clean: require('./grunt/config/clean'),
 
         // Minify js files
-        uglify: {
-            options: {
-                sourceMap: true,
-                sourceMapIncludeSources: true,
-                preserveComments: 'some'
-            },
-
-            vendorjs: {
-                options: {
-                    sourceMap: false
-                },
-                files: [{
-                    '<%= dirs.dest %>/js/modernizr.min.js': [
-                        '<%= dirs.bower %>/modernizr/modernizr.js'
-                    ]
-                }]
-            }
-        },
+        uglify: require('./grunt/config/uglify'),
 
         // Concat js and css files
-        concat: {
-            options: {
-                process: function (src, filePath) {
-                    return '/* ####' + filePath + '*/\n' + src;
-                }
-            },
-
-            // 3rd party Javascript
-            vendorjs_mins: {
-                files: [{
-                    '<%= dirs.dest %>/js/vendor.min.js': [
-                        '<%= dirs.bower %>/jquery/dist/jquery.min.js',
-                        '<%= dirs.bower %>/bootstrap/dist/js/bootstrap.min.js',
-                    ]
-                }]
-            },
-
-            // 3rd party Stylesheets
-            vendorcss_mins: {
-                files: [{
-                    '<%= dirs.dest %>/css/vendor.min.css': [
-                        '<%= dirs.bower %>/bootstrap/dist/css/bootstrap.min.css',
-                    ]
-                }]
-            }
-        },
+        concat: require('./grunt/config/concat'),
 
         // Copy certain resources like images/fonts
-        copy: {
-            dist: {
-                files: [{
-                    expand: true,
-                    cwd: '<%= dirs.bower %>/bootstrap/dist/fonts/',
-                    src: ['*'],
-                    dest: '<%= dirs.dest %>/fonts'
-                }]
-            }
-        },
+        copy: require('./grunt/config/copy'),
 
         // Compile compass stylesheets
-        compass: {
-            frontend: {
-                options: {
-                    sassDir: '<%= dirs.assets.frontend %>/<%= dirs.styles.compass %>',
-                    cssDir: '<%= dirs.build %>/compass',
-                    importPath: '<%= dirs.bower %>'
-                }
-            }
-        },
+        compass: require('./grunt/config/compass'),
 
         // Minimize and combine css files
-        cssmin: {
-            frontend: {
-                files: [{
-                    '<%= dirs.dest %>/css/<%= pkg.name %>.min.css': [
-                        // Minify normal stylesheets
-                        '<%= dirs.assets.frontend %>/<%= dirs.styles.base %>/*.css',
+        cssmin: require('./grunt/config/cssmin'),
 
-                        // Minify stylesheets compiled by compass
-                        '<%= dirs.build %>/compass/*.css'
-                    ]
-                }]
-            }
-        },
+        // Watch files for changes
+        watch: require('./grunt/config/watch')
     });
 
     // Load plugins
@@ -119,5 +49,5 @@ module.exports = function (grunt) {
     require('time-grunt')(grunt);
 
     // Register tasks
-    grunt.registerTask('all', ['clean', 'copy', 'uglify', 'concat'])
+    grunt.registerTask('all', ['clean', 'copy', 'compass', 'cssmin', 'uglify', 'concat'])
 }

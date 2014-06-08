@@ -55,6 +55,12 @@
         @yield('content')
     </div>
 
+    <div id="footer">
+	    <div class="container">
+	    	<p class="text-muted">Place sticky footer content here.</p>
+	    </div>
+    </div>
+
     {{ HTML::script('js/vendor.min.js') }}
     @yield('scripts')
 </body>
