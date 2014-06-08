@@ -65,6 +65,18 @@ module.exports = function (grunt) {
                     ]
                 }]
             }
+        },
+
+        // Copy certain resources like images/fonts
+        copy: {
+            dist: {
+                files: [{
+                    expand: true,
+                    cwd: '<%= dirs.bower %>/bootstrap/dist/fonts/',
+                    src: ['*'],
+                    dest: '<%= dirs.dest %>/fonts'
+                }]
+            }
         }
     });
 
@@ -73,5 +85,5 @@ module.exports = function (grunt) {
     require('time-grunt')(grunt);
 
     // Register tasks
-    grunt.registerTask('all', ['clean', 'uglify', 'concat'])
+    grunt.registerTask('all', ['clean', 'copy', 'uglify', 'concat'])
 }

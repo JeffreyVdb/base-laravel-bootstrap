@@ -11,5 +11,14 @@
 |
 */
 
+// Main site
+Route::group(array('namespace' => 'Project\Controllers'), function()
+{
+	Route::get('/', 'HomeController@showIndex');
+});
 
-Route::get('/', 'Project\Controllers\HomeController@showIndex');
+// Backend
+Route::group(array('prefix' => 'admin', 'namespace' => 'Project\Admin\Controllers'), function()
+{
+	Route::get('/', 'HomeController@showIndex');
+});

@@ -1,5 +1,6 @@
 @extends('layouts.master')
 
+@section('title', 'homepage')
 @section('content')
 	<h1>this is the homepage</h1>
 	<div class="table-responsive">
@@ -9,19 +10,16 @@
 	   			<th>Foobar</th>
 	   			<th>Foobar</th>
 	   		</tr>
-
 	   		<tr>
 	   			<td>some data</td>
 	   			<td>some data</td>
 	   			<td>some other data</td>
 	   		</tr>
-
 	   		<tr>
 	   			<td>some data again</td>
 	   			<td>some data again</td>
 	   			<td>some other data</td>
 	   		</tr>
-
 	   		<tr>
 	   			<td>Hello</td>
 	   			<td>Hello</td>
@@ -33,7 +31,7 @@
 	   			<td>pretty</td>
 	   		</tr>
 	   		<tr>
-	   			<td>cool</td>
+	   			<td><span class="glyphicon glyphicon-remove"></span> cool</td>
 	   			<td>omg</td>
 	   			<td>yes</td>
 	   		</tr>
